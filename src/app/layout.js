@@ -1,8 +1,8 @@
 import "./globals.css";
 
 export const metadata = {
-    title: "Sistema de Cadastro de Pets",
-    description: "Projeto Final Individual",
+    title: "PetCare 🐾",
+    description: "Sistema de Cadastro de Pets",
     icons: {
         icon: "/icons/favicon.ico",
     },
