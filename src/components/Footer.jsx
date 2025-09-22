@@ -18,7 +18,7 @@ export default function Footer() {
         }}
       >
         <span>© {new Date().getFullYear()} PetCare</span>
-        <span>Feito com ❤️ por Domeneghetti</span>
+        <span>Feito por Domeneghetti</span>
       </div>
     </footer>
   );
