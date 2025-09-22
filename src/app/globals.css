@@ -1,18 +1,218 @@
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-} 
+}
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f8fafc;
+  color: #1f2937;
+  line-height: 1.5;
 }
 
-a {
-  text-decoration: none;
+/* Layout */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-ul {
-  list-style-type: none;
+/* Header */
+header {
+  background: #3b82f6;
+  color: white;
+  padding: 15px 0;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+header nav .nav-link {
+  margin-left: 20px;
+  color: white;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+header nav .nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  background: #1e3a8a;
+  color: white;
+  padding: 15px 0;
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* Títulos */
+.title {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  color: #2563eb;
+}
+
+/* Inputs */
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  margin-top: 5px;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+}
+
+/* Botões */
+button {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button.primary {
+  background: #3b82f6;
+  color: white;
+}
+
+button.primary:hover {
+  background: #2563eb;
+}
+
+button.secondary {
+  background: white;
+  border: 2px solid #3b82f6;
+  color: #3b82f6;
+}
+
+button.secondary:hover {
+  background: #3b82f6;
+  color: white;
+}
+
+button.danger {
+  background: #ef4444;
+  color: white;
+}
+
+button.danger:hover {
+  background: #dc2626;
+}
+
+/* Listagem de Pets */
+.pet-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.pet-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* Detalhes do Pet */
+.pet-details img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+/* Paginação */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.pagination button {
+  background: white;
+  border: 1px solid #3b82f6;
+  color: #3b82f6;
+  padding: 6px 12px;
+}
+
+.pagination button.active {
+  background: #3b82f6;
+  color: white;
+}
+.pagination button:hover {
+  background: #2563eb;
+  color: white;
+}
+.pagination button:disabled {
+  background: #e5e7eb;
+  border-color: #9ca3af;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+/* Mensagens */
+.message {
+  background: #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.message.success {
+  background: #d1fae5;
+}
+
+.message.error {
+  background: #fee2e2;
+} 
+
+/* Textos */
+.small {  
+  color: #6b7280;
+  font-size: 0.9rem;
+}   
+.bold {
+  font-weight: bold;
+}
+.link {
+  color: #3b82f6;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.link:hover { 
+  color: #2563eb;
+} 
+.center {
+  text-align: center;
+}
+.flex {
+  display: flex;
 }

@@ -1,51 +1,45 @@
 "use client";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { getPets } from "../lib/storage";
 
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import styles from './page.module.css'; // <-- aqui
-
-export default function Page() {
-  const [recentPets, setRecentPets] = useState([]);
+export default function Home() {
+  const [pets, setPets] = useState([]);
 
   useEffect(() => {
-    api.init();
-    api.getPets().then(pets => {
-      const recent = pets.slice().reverse().slice(0, 5);
-      setRecentPets(recent);
-    });
+    setPets(getPets().slice(0, 3));
   }, []);
 
   return (
-    <div>
-      <Header />
-      <main className={styles.main}>
-        <section className={styles.hero}>
-          <h1>PetCare</h1>
-          <p>Sistema para cadastro, listagem e detalhamento de pets.</p>
-          <div className={styles.actions}>
-            <Link href="/pets/form" className={styles.primary}>Cadastrar Pet</Link>
-            <Link href="/pets" className={styles.secondary}>Ver Lista de Pets</Link>
-          </div>
-        </section>
+    <div className="card">
+      <h1 className="title">Bem-vinda ao PetCare 🐾</h1>
+      <p>Gerencie seus pets de forma simples e rápida.</p>
 
-        <section className={styles.recent}>
-          <h2>Pets recentes</h2>
-          {recentPets.length === 0 ? (
-            <p>Nenhum pet cadastrado ainda.</p>
-          ) : (
-            <ul>
-              {recentPets.map(p => (
-                <li key={p.id}>
-                  <Link href={`/pets/${p.id}`}>{p.name} — {p.species}</Link>
-                </li>
-              ))}
-            </ul>
-          )}
-        </section>
-      </main>
-      <Footer />
+      <div style={{ marginTop: "20px", display: "flex", gap: "12px" }}>
+        <Link href="/pets/novo">
+          <button className="primary">Cadastrar Pet</button>
+        </Link>
+        <Link href="/pets">
+          <button className="secondary">Ver Lista de Pets</button>
+        </Link>
+        <Link href="/sobre">
+          <button className="secondary">Sobre Mim</button>
+        </Link>
+      </div>
+
+      <h2 className="title" style={{ marginTop: "30px" }}>🐕 Pets Recentes</h2>
+      <div className="pet-list">
+        {pets.map((pet) => (
+          <div key={pet.id} className="card pet-card">
+            <img src={pet.photo || "/placeholder.png"} alt={pet.name} />
+            <h3>{pet.name}</h3>
+            <p>{pet.species} • {pet.age} anos</p>
+            <Link href={`/pets/${pet.id}`}>
+              <button className="secondary">Ver Detalhes</button>
+            </Link>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

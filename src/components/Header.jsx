@@ -1,19 +1,18 @@
-"use client";
-import Link from 'next/link';
-import styles from './Header.module.css'; // <-- importante
+import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className={styles.header}>
-      <div className={styles.brand}>
-        <Link href="/"><a>PetCare</a></Link>
+    <header>
+      <div className="container" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <Link href="/">
+          <h2 style={{ color: "white" }}>🐾 PetCare</h2>
+        </Link>
+        <nav>
+          <Link href="/pets" className="nav-link">Pets</Link>
+          <Link href="/pets/novo" className="nav-link">Cadastrar</Link>
+          <Link href="/sobre" className="nav-link">Sobre Mim</Link>
+        </nav>
       </div>
-      <nav>
-        <Link href="/"><a>Home</a></Link>
-        <Link href="/pets"><a>Pets</a></Link>
-        <Link href="/pets/form"><a>Cadastrar Pet</a></Link>
-        <Link href="/about"><a>Sobre mim</a></Link>
-      </nav>
     </header>
-  )
+  );
 }
