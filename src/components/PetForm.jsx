@@ -35,6 +35,7 @@ export default function PetForm({ initial = null, onSaved }) {
     e.preventDefault();
     if (!form.name.trim()) return alert("Nome é obrigatório");
     if (!form.tutorId) return alert("Selecione um tutor ou cadastre um novo");
+    
     const payload = {
       name: form.name.trim(),
       species: form.species,
@@ -44,12 +45,14 @@ export default function PetForm({ initial = null, onSaved }) {
       tutorId: form.tutorId,
       photo: form.photo.trim(),
     };
+    
     if (initial && initial.id) {
       payload.id = initial.id;
       updatePet(payload);
     } else {
       addPet(payload);
     }
+    
     onSaved && onSaved(payload);
   }
 

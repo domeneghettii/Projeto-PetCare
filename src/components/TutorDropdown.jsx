@@ -16,13 +16,22 @@ export default function TutorDropdown({ tutors, value, onChange, onAddTutor }) {
 
   return (
     <div>
-      <select className="input" value={value || ""} onChange={(e) => onChange(e.target.value)}>
+      <select 
+        className="input" 
+        value={value || ""} 
+        onChange={(e) => onChange(e.target.value)}
+        disabled={loading}
+      >
         <option value="">-- Selecione um tutor --</option>
-        {tutors.map((t) => (
-          <option key={t.id} value={t.id}>
-            {t.name} — {t.phone}
-          </option>
-        ))}
+        {tutors && tutors.length > 0 ? (
+          tutors.map((t) => (
+            <option key={t.id} value={t.id}>
+              {t.name} — {t.phone}
+            </option>
+          ))
+        ) : (
+          <option value="" disabled>Nenhum tutor cadastrado</option>
+        )}
       </select>
 
       <button
@@ -30,8 +39,9 @@ export default function TutorDropdown({ tutors, value, onChange, onAddTutor }) {
         onClick={() => setShowNew(!showNew)}
         className="secondary"
         style={{ marginTop: "8px" }}
+        disabled={loading}
       >
-        + Novo Tutor
+        {loading ? 'Carregando...' : '+ Novo Tutor'}
       </button>
 
       {showNew && (

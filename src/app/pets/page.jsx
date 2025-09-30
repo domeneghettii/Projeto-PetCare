@@ -10,16 +10,45 @@ export default function PetsList() {
   const [page, setPage] = useState(1);
   const perPage = 4;
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  async function loadData() {
+    try {
+      setLoading(true);
+      const [petsData, tutorsData] = await Promise.all([
+        getPets(),
+        getTutors()
+      ]);
+      setPets(petsData);
+      setTutors(tutorsData);
+      setError(null);
+    } catch (err) {
+      setError('Erro ao carregar dados');
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   useEffect(() => {
-    seedIfEmpty();
-    setPets(getPets());
-    setTutors(getTutors());
+    loadData();
   }, []);
 
-  function handleDelete(id) {
+  async function handleDelete(id) {
     if (!confirm("Tem certeza que deseja excluir este pet?")) return;
-    removePet(id);
-    setPets(getPets());
+    
+    try {
+      setLoading(true);
+      await removePet(id);
+      await loadData(); // recarrega a lista
+      setError(null);
+    } catch (err) {
+      setError('Erro ao excluir pet');
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   }
 
   const totalPages = Math.ceil(pets.length / perPage) || 1;
