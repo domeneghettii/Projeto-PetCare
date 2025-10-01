@@ -93,24 +93,15 @@ export default function PetForm({ initial = null, onSaved }) {
         </div>
       </div>
 
-      <div style={{ display: "flex", gap: "12px" }}>
-        <div style={{ flex: 1 }}>
+      <div className="form-row">
+        <div>
           <label className="small">Raça</label>
           <input
             className="input"
             name="breed"
             value={form.breed}
             onChange={handleChange}
-          />
-        </div>
-        <div style={{ flex: 1 }}>
-          <label className="small">Foto (URL)</label>
-          <input
-            className="input"
-            name="photo"
-            value={form.photo}
-            onChange={handleChange}
-            placeholder="Cole a URL da imagem"
+            placeholder="Raça"
           />
         </div>
       </div>

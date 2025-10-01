@@ -1,19 +1,38 @@
 import "./globals.css";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Link from "next/link";
 
 export const metadata = {
-  title: "PetCare - Cadastro de Pets",
-  description: "Sistema de cadastro de pets em Next.js",
+  title: "PetCare",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
       <body>
-        <Header />
+        <header>
+          <div className="container">
+            <h2>
+              <span style={{ fontSize: 20, marginRight: 8 }}>🐾</span>
+              <span style={{ textDecoration: "underline" }}>PetCare</span>
+            </h2>
+
+            <nav>
+              <Link href="/" className="nav-link">Home</Link>
+              <Link href="/pets" className="nav-link">Ver Lista de Pets</Link>
+              <Link href="/#recentes" className="nav-link">Pets Recentes</Link>
+              <Link href="/pets/cadastrar" className="nav-link">Cadastrar</Link>
+              <Link href="/sobre" className="nav-link">Sobre Mim</Link>
+            </nav>
+          </div>
+        </header>
+
         <main className="container">{children}</main>
-        <Footer />
+
+        <footer>
+          <div className="container center" style={{ paddingTop: 18, paddingBottom: 18 }}>
+            © {new Date().getFullYear()} PetCare — Feito por Luana Domeneghetti
+          </div>
+        </footer>
       </body>
     </html>
   );
