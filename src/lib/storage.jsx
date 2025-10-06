@@ -7,10 +7,10 @@ const seedPets = [
   {
     id: "p1",
     name: "Rex",
-    species: "Cão",
+    species: "Cachorro",
     breed: "Labrador",
-    age: 3,
-    notes: "Adora brincar com bola.",
+    age: 5,
+    notes: "Muito brincalhão",
     tutorId: "t1",
     photo: "https://place-puppy.com/300x200",
   },

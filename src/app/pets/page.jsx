@@ -41,7 +41,7 @@ export default function PetsList() {
     try {
       setLoading(true);
       await removePet(id);
-      await loadData(); // recarrega a lista
+      await loadData(); 
       setError(null);
     } catch (err) {
       setError('Erro ao excluir pet');

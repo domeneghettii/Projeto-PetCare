@@ -7,7 +7,6 @@ export default function Sobre() {
       <p>Este projeto de cadastro de pets é uma demonstração das minhas habilidades técnicas e do meu compromisso com o desenvolvimento de soluções práticas para o cuidado animal. Estou sempre aberta a novos desafios e oportunidades para crescer profissionalmente.</p>
       <p>Se você quiser saber mais sobre mim ou discutir possíveis colaborações, sinta-se à vontade para entrar em contato!</p>
       <p>Obrigado por visitar meu projeto!</p>
-      <p className="small">Luana Domeneghetti</p>
     </div>
   );
 }

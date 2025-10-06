@@ -20,6 +20,8 @@ export default function Home() {
           Pronta para começar? Use a navegação no topo para ver a lista de pets ou cadastrar um novo.
         </p>
       </section>
+              
+    
     </>
   );
 }

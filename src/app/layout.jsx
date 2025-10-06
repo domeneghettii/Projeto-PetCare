@@ -18,10 +18,10 @@ export default function RootLayout({ children }) {
 
             <nav>
               <Link href="/" className="nav-link">Home</Link>
-              <Link href="/pets" className="nav-link">Ver Lista de Pets</Link>
-              <Link href="/#recentes" className="nav-link">Pets Recentes</Link>
-              <Link href="/pets/cadastrar" className="nav-link">Cadastrar</Link>
+              <Link href="/pets" className="nav-link">Pets Recentes</Link>
+              <Link href="/pets/novo" className="nav-link">Cadastrar Pet</Link>
               <Link href="/sobre" className="nav-link">Sobre Mim</Link>
+              <Link href="/pets/contato" className="nav-link">Contato</Link>  
             </nav>
           </div>
         </header>
