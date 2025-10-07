@@ -6,13 +6,13 @@ import { addPet, updatePet, addTutor, getTutors } from "../lib/storage";
 export default function PetForm({ initial = null, onSaved }) {
   const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:3000/api/pets";
   const [form, setForm] = useState({
-    name: "",
-    species: "",
-    breed: "",
-    age: "",
-    notes: "",
-    tutorId: "",
-    photo: "",
+    nome: "",
+    especie: "",
+    raca: "",
+    idade: "",
+    observacoes: "",
+    tutor_id: "",
+    foto: "",
   });
   const [tutors, setTutors] = useState([]);
 
@@ -29,13 +29,13 @@ export default function PetForm({ initial = null, onSaved }) {
   function handleAddTutor(tutor) {
     const newTutor = addTutor(tutor);
     setTutors(getTutors());
-    setForm((prev) => ({ ...prev, tutorId: newTutor.id }));
+    setForm((prev) => ({ ...prev, tutor_id: newTutor.id }));
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!form.name.trim()) return alert("Nome é obrigatório");
-    if (!form.tutorId) return alert("Selecione um tutor ou cadastre um novo");
+    if (!form.nome.trim()) return alert("Nome é obrigatório");
+    if (!form.tutor_id) return alert("Selecione um tutor ou cadastre um novo");
     
     const payload = {
       name: form.name.trim(),

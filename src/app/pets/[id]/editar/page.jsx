@@ -11,9 +11,17 @@ export default function EditPet() {
   const router = useRouter();
 
   useEffect(() => {
-    const p = getPetById(id);
-    if (!p) return router.push("/pets");
-    setInitial(p);
+    async function fetchPet() {
+      try {
+        const response = await fetch(`http://localhost:3000/api/pets/${id}`);
+        if (!response.ok) return router.push("/pets");
+        const petData = await response.json();
+        setInitial(petData);
+      } catch {
+        router.push("/pets");
+      }
+    }
+    fetchPet();
   }, [id]);
 
   function onSaved() {

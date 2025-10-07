@@ -2,21 +2,22 @@
 import Link from "next/link";
 
 export default function PetCard({ pet, tutor, onDelete }) {
+  const fotoUrl = pet.foto ? `http://localhost:3000/uploads/${pet.foto}` : "/placeholder.png";
   return (
     <div className="card pet-card">
       <img
-        src={pet.photo || "/placeholder.png"}
-        alt={pet.name}
+        src={fotoUrl}
+        alt={pet.nome}
         className="pet-photo"
       />
       <div style={{ flex: 1 }}>
-        <h3>{pet.name}</h3>
+        <h3>{pet.nome}</h3>
         <p className="small">
-          {pet.species} • {pet.age} anos • {pet.breed}
+          {pet.especie} • {pet.idade} anos • {pet.raca}
         </p>
-        <p className="small">Tutor: {tutor?.name} ({tutor?.phone})</p>
+        <p className="small">Tutor: {tutor?.nome} ({tutor?.telefone})</p>
         <p className="small">
-          {pet.notes?.length > 60 ? pet.notes.slice(0, 60) + "..." : pet.notes}
+          {pet.observacoes?.length > 60 ? pet.observacoes.slice(0, 60) + "..." : pet.observacoes}
         </p>
         <div style={{ marginTop: "8px", display: "flex", gap: "8px" }}>
           <Link href={`/pets/${pet.id}`}>

@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { getPetById, getTutors, removePet } from "../../../lib/storage";
+import { removePet } from "../../../lib/storage";
 import Link from "next/link";
 
 export default function PetDetails() {
@@ -11,20 +11,34 @@ export default function PetDetails() {
   const path = usePathname();
   const id = path.split("/").pop();
 
+
+  
   useEffect(() => {
-    const p = getPetById(id);
-    setPet(p);
-    if (p) {
-      const t = getTutors().find((x) => x.id === p.tutorId);
-      setTutor(t || null);
+    async function fetchPet() {
+      try {
+        const response = await fetch(`http://localhost:3000/api/pets/${id}`);
+        if (!response.ok) {
+          setPet(null);
+          return;
+        }
+        const petData = await response.json();
+        setPet(petData);
+        setTutor({
+          nome: petData.tutor_nome,
+          telefone: petData.tutor_telefone
+        });
+      } catch {
+        setPet(null);
+      }
     }
+    fetchPet();
   }, [id]);
 
   if (!pet)
     return (
       <div className="card">
         <p>Pet não encontrado.</p>
-        <button className="secondary" onClick={() => router.push("/pets")}>
+        <button className="secondary" onClick={() => router.push("/pets")}> 
           Voltar
         </button>
       </div>
@@ -36,15 +50,16 @@ export default function PetDetails() {
     router.push("/pets");
   }
 
+  const fotoUrl = pet.foto ? `http://localhost:3000/uploads/${pet.foto}` : "/placeholder.png";
   return (
     <div className="card pet-details">
-      <h1 className="title">{pet.name}</h1>
-      <img src={pet.photo || "/placeholder.png"} alt={pet.name} />
-      <p><strong>Espécie:</strong> {pet.species}</p>
-      <p><strong>Raça:</strong> {pet.breed}</p>
-      <p><strong>Idade:</strong> {pet.age} anos</p>
-      <p><strong>Observações:</strong> {pet.notes || "Nenhuma observação"}</p>
-      <p><strong>Tutor:</strong> {tutor?.name} ({tutor?.phone})</p>
+      <h1 className="title">{pet.nome}</h1>
+      <img src={fotoUrl} alt={pet.nome} />
+      <p><strong>Espécie:</strong> {pet.especie}</p>
+      <p><strong>Raça:</strong> {pet.raca}</p>
+      <p><strong>Idade:</strong> {pet.idade} anos</p>
+      <p><strong>Observações:</strong> {pet.observacoes || "Nenhuma observação"}</p>
+      <p><strong>Tutor:</strong> {tutor?.nome} ({tutor?.telefone})</p>
 
       <div style={{ marginTop: "20px", display: "flex", gap: "10px" }}>
         <Link href={`/pets/${pet.id}/editar`}>
