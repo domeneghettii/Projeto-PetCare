@@ -15,12 +15,31 @@ const seedPets = [
     photo: "https://place-puppy.com/300x200",
   },
   {
+    id: "p2",
+    name: "Miau",
+    species: "Gato",
+    breed: "Siamês",
+    age: 3,
+    notes: "Adora dormir",
+    tutorId: "t2",
+    photo: "https://placekitten.com/300/200",
+  },
+  {
+    id: "p3",
+    name: "Nemo",
+    species: "Peixe",
+    breed: "Palhaço",
+    age: 1,
+    notes: "Muito curioso",
+    tutorId: "t3",
+    photo: "https://placekitten.com/300/200",
   },
 ];
 
 const seedTutors = [
   { id: "t1", name: "Ana", phone: "99999-1111" },
   { id: "t2", name: "Carlos", phone: "98888-2222" },
+  { id: "t3", name: "Beatriz", phone: "97777-3333" },
 ];
 
 export function seedIfEmpty() {
@@ -33,7 +52,7 @@ export function seedIfEmpty() {
 }
 
 export function getPets() {
-  if (typeof window === "undefined") return []; // evita erro no servidor
+  if (typeof window === "undefined") return []; 
   return JSON.parse(localStorage.getItem("pets") || "[]");
 }
 
