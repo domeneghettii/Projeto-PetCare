@@ -15,14 +15,6 @@ const seedPets = [
     photo: "https://place-puppy.com/300x200",
   },
   {
-    id: "p2",
-    name: "Mimi",
-    species: "Gato",
-    breed: "Siamês",
-    age: 2,
-    notes: "Muito carinhosa e dorminhoca.",
-    tutorId: "t2",
-    photo: "https://placekitten.com/300/200",
   },
 ];
 

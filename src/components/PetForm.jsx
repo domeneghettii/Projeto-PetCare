@@ -107,6 +107,17 @@ export default function PetForm({ initial = null, onSaved }) {
       </div>
 
       <div>
+        <label className="small">Foto</label>
+        <input
+          className="input"
+          name="photo"
+          value={form.photo}
+          onChange={handleChange}
+          placeholder="URL da foto"
+        />
+      </div>
+
+      <div>
         <label className="small">Tutor</label>
         <TutorDropdown
           tutors={tutors}
