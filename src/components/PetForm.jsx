@@ -4,9 +4,10 @@ import TutorDropdown from "./TutorDropdown";
 import { addPet, updatePet, addTutor, getTutors } from "../lib/storage";
 
 export default function PetForm({ initial = null, onSaved }) {
+  const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:3000/api/pets";
   const [form, setForm] = useState({
     name: "",
-    species: "Cão",
+    species: "",
     breed: "",
     age: "",
     notes: "",

@@ -22,7 +22,7 @@ export default function TutorDropdown({ tutors, value, onChange, onAddTutor, loa
         onChange={(e) => onChange(e.target.value)}
         disabled={loading}
       >
-        <option value="">-- Selecione um tutor --</option>
+        <option value="">Selecione um tutor</option>
         {tutors && tutors.length > 0 ? (
           tutors.map((t) => (
             <option key={t.id} value={t.id}>
