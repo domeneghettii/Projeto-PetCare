@@ -2,7 +2,7 @@
 import Link from "next/link";
 
 export default function PetCard({ pet, tutor, onDelete }) {
-  const fotoUrl = pet.foto ? `http://localhost:3000/uploads/${pet.foto}` : "/placeholder.png";
+  const fotoUrl = pet.foto ? pet.foto : "/placeholder.png";
   return (
     <div className="card pet-card">
       <img

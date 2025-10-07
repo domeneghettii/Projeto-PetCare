@@ -50,7 +50,7 @@ export default function PetDetails() {
     router.push("/pets");
   }
 
-  const fotoUrl = pet.foto ? `http://localhost:3000/uploads/${pet.foto}` : "/placeholder.png";
+  const fotoUrl = pet.foto ? pet.foto : "/placeholder.png";
   return (
     <div className="card pet-details">
       <h1 className="title">{pet.nome}</h1>
