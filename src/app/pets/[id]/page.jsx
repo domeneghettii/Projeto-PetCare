@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { removePet } from "../../../lib/storage";
 import Link from "next/link";
 
 export default function PetDetails() {
@@ -42,12 +41,12 @@ export default function PetDetails() {
       </div>
     );
 
-  // 🔹 Função corrigida para excluir o pet
+
   async function handleDelete() {
     if (!confirm("Deseja excluir este pet?")) return;
 
     try {
-      // Faz a requisição DELETE direto pra API
+    
       const response = await fetch(`http://localhost:3000/api/pets/${pet.id}`, {
         method: "DELETE",
       });
@@ -59,7 +58,7 @@ export default function PetDetails() {
       }
 
       alert("Pet excluído com sucesso!");
-      router.push("/pets"); // volta pra lista
+      router.push("/pets"); 
     } catch (error) {
       console.error("Erro ao excluir pet:", error);
       alert("Erro ao excluir o pet. Verifique o console.");
