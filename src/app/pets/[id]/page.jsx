@@ -11,8 +11,6 @@ export default function PetDetails() {
   const path = usePathname();
   const id = path.split("/").pop();
 
-
-  
   useEffect(() => {
     async function fetchPet() {
       try {
@@ -38,19 +36,38 @@ export default function PetDetails() {
     return (
       <div className="card">
         <p>Pet não encontrado.</p>
-        <button className="secondary" onClick={() => router.push("/pets")}> 
+        <button className="secondary" onClick={() => router.push("/pets")}>
           Voltar
         </button>
       </div>
     );
 
-  function handleDelete() {
+  // 🔹 Função corrigida para excluir o pet
+  async function handleDelete() {
     if (!confirm("Deseja excluir este pet?")) return;
-    removePet(pet.id);
-    router.push("/pets");
+
+    try {
+      // Faz a requisição DELETE direto pra API
+      const response = await fetch(`http://localhost:3000/api/pets/${pet.id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        alert("Erro ao excluir o pet. Tente novamente.");
+        console.error("Erro ao excluir pet:", response.statusText);
+        return;
+      }
+
+      alert("Pet excluído com sucesso!");
+      router.push("/pets"); // volta pra lista
+    } catch (error) {
+      console.error("Erro ao excluir pet:", error);
+      alert("Erro ao excluir o pet. Verifique o console.");
+    }
   }
 
   const fotoUrl = pet.foto ? pet.foto : "/placeholder.png";
+
   return (
     <div className="card pet-details">
       <h1 className="title">{pet.nome}</h1>

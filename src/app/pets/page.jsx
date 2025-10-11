@@ -15,31 +15,34 @@ export default function PetsList() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    async function fetchPets() {
-      setLoading(true);
-      try {
-        const response = await fetch(`${apiUrl}/pets`);
-        console.log('Status da resposta:', response.status);
-        if (!response.ok) {
-          console.error('Erro ao buscar pets:', response.statusText);
-          setPets([]);
-          setError('Erro ao buscar pets: ' + response.statusText);
-          return;
-        }
-        const json = await response.json();
-        console.log('Retorno da API de pets:', json);
-        setPets(Array.isArray(json) ? json : []);
-        const tutorsData = await getTutors();
-        setTutors(tutorsData);
-        setError(null);
-      } catch (error) {
+
+  async function fetchPets() {
+    setLoading(true);
+    try {
+      const response = await fetch(`${apiUrl}/pets`);
+      console.log('Status da resposta:', response.status);
+      if (!response.ok) {
+        console.error('Erro ao buscar pets:', response.statusText);
         setPets([]);
-        setError('Erro ao carregar dados');
-      } finally {
-        setLoading(false);
+        setError('Erro ao buscar pets: ' + response.statusText);
+        return;
       }
+      const json = await response.json();
+      console.log('Retorno da API de pets:', json);
+      setPets(Array.isArray(json) ? json : []);
+      const tutorsData = await getTutors();
+      setTutors(tutorsData);
+      setError(null);
+    } catch (error) {
+      setPets([]);
+      setError('Erro ao carregar dados');
+    } finally {
+      setLoading(false);
     }
+  }
+
+  
+  useEffect(() => {
     fetchPets();
   }, []);
 
@@ -49,7 +52,7 @@ export default function PetsList() {
     try {
       setLoading(true);
       await removePet(id);
-      await loadData(); 
+      await fetchPets(); 
       setError(null);
     } catch (err) {
       setError('Erro ao excluir pet');
